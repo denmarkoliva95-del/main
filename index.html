@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-width: 480px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 17px;
+            color: #444;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+        }
+
+        button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 18px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+        }
+
+        .music-btn {
+            background: #ff85a2;
+        }
+
+        .hidden {
+            display: none;
+            margin-top: 20px;
+            color: #ff4d6d;
+            font-weight: bold;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 24px;
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- MUSIC WITHOUT LOOP -->
+<audio id="bgMusic">
+    <source src="music.m4a" type="audio/mp4">
+</audio>
+
+<div class="card">
+    <h1>Happy Valentine's Day, my Baby Jo❤️</h1>
+
+    <p>
+        Every day with you feels special. Thank you for the smiles, laughs,
+        and memories we share together.
+    </p>
+
+    <div class="gallery">
+        <img src="ourphoto1.jpg" alt="Us 1">
+        <img src="ourphoto.jpg" alt="Us 2">
+        <img src="photo3.jpg" alt="Us 3">
+        <img src="photo4.jpg" alt="Us 4">
+    </div>
+
+    <button onclick="showSurprise()">Tap 💕</button>
+
+    <button class="music-btn" onclick="playMusic()">Play Our Song 🎵</button>
+
+    <p id="secret" class="hidden">
+        I am really lucky to have you. I appreciate you more than words can explain. I lovee you so much!💖
+    </p>
+</div>
+
+<script>
+    function showSurprise() {
+        document.getElementById("secret").style.display = "block";
+        createHearts();
+    }
+
+    function createHearts() {
+        for (let i = 0; i < 20; i++) {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💘🫦❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+    }
+
+    // REPLAY MUSIC EVERY TIME BUTTON IS TAPPED
+    function playMusic() {
+        let music = document.getElementById("bgMusic");
+        music.currentTime = 0; // go back to start
+        music.play();
+    }
+</script>
+
+</body>
+</html>
